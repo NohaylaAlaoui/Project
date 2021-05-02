@@ -1,0 +1,33 @@
+{% load mathfilters %}
+{% block title %}
+    <title>La liste des Demandes de Réservations </title>
+    {% endblock title %}
+    {% block content %}
+    <div class="container">
+    <h1>La liste des Demandes de Réservations </h1>
+        {% csrf_token %}
+
+          <table border="2" class="table text-center table-hover table-bordered caption-top">
+            <thead class="table-dark">
+              <tr>
+                <th> Date de la Demande </th>
+                <th> Nom Client </th>
+                <th> Prenom Client </th>
+                <th> Numero de Tel</th>
+                <th colspan="2"> actions </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for onlinerequest in onlinerequest_list %}
+              <tr>
+                <td>(<a href="{% url 'GestionHotel:onlinerequest-detail' onlinerequest.id %} ">{{onlinerequest.date_request}}</a>)</td>
+                <td>{{onlinerequest.first_name}}</td>
+                <td>{{onlinerequest.last_name}}</td>
+                <td>{{onlinerequest.phone_number}}</td>
+                <td colspan="2">(<a href=" {% url 'GestionHotel:onlinerequest-delete' onlinerequest.id %} ">Delete</a>)</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% block title %}
+    <title>Clients List</title>
+    {% endblock title %}
+    {% block content %}
+    <div class="container">
+    <h1>This is the Clients List </h1>
+        {% csrf_token %}
+
+          <table border="2" class="table text-center table-hover table-bordered caption-top">
+            <thead class="table-dark">
+              <tr>
+                <th> prenom </th>
+                <th> nom </th>
+                <th colspan="2"> actions     </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for client in client_list %}
+              <tr>
+                <td>{{client.first_name}}</td>
+                <td>{{client.last_name}}</td>
+                <td colspan="2">(<a href=" {% url 'GestionHotel:client-update' client.id %} ">Update</a>)   (<a href=" {% url 'GestionHotel:client-delete' client.id %} ">Delete</a>)</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+{% endblock content %}

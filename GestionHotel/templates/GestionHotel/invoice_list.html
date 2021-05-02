@@ -1,0 +1,37 @@
+{% load mathfilters %}
+{% block title %}
+    <title>La liste des Factures</title>
+    {% endblock title %}
+    {% block content %}
+    <div class="container">
+    <h1>La listes des differentes Factures </h1>
+        {% csrf_token %}
+
+          <table border="2" class="table text-center table-hover table-bordered caption-top">
+            <thead class="table-dark">
+              <tr>
+                <th> Numero </th>
+                <th> Stats </th>
+                <th> Numero de la reservation </th>
+                <th> Date d'échéance </th>
+                <th> Nom Client </th>
+                <th> Somme Totale (DH) </th>
+                <th colspan="2"> actions </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for invoice in invoice_list %}
+              <tr>
+                <td>(<a href="{% url 'GestionHotel:invoice-detail' invoice.id %} ">{{invoice.invoice_number}}</a>)</td>
+                <td>{{invoice.status}}</td>
+                <td>{{invoice.reservation_id}}</td>
+                <td>{{invoice.date_due}}</td>
+                <td>{{invoice.reservation_id.client_id}}</td>
+                <td>{{invoice.reservation_id.days|mul:invoice.reservation_id.chambre_id.chamber_type.type_price}}</td>
+                <td colspan="2">(<a href=" {% url 'GestionHotel:invoice-update' invoice.id %} ">Update</a>)   (<a href=" {% url 'GestionHotel:invoice-delete' invoice.id %} ">Delete</a>)</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+{% endblock content %}

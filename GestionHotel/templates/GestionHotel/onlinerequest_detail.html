@@ -1,0 +1,55 @@
+{% load mathfilters %}
+{% block title %}
+    <title>Détailles de Demande de réservations</title>
+    {% endblock title %}
+    {% block content %}
+    <div class="container">
+    <h1>Les detailles de la Demande de réservation </h1>
+        {% csrf_token %}
+        <br>
+        <h2>Les information Client</h2>
+
+        <table border="2" class="table text-center table-hover table-bordered caption-top">
+          <thead class="table-dark">
+            <tr>
+              <th> Nom Client </th>
+              <th> Prenom Client </th>
+              <th> Numero de Tel</th>
+              <th> Email </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{onlinerequest.first_name}}</td>
+              <td>{{onlinerequest.last_name}}</td>
+              <td>{{onlinerequest.phone_number}}</td>
+              <td>{{onlinerequest.email_client}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <br>
+        <h2>Detaille de la Demande de réservation</h2>
+
+          <table border="2" class="table text-center table-hover table-bordered caption-top">
+            <thead class="table-dark">
+              <tr>
+                <th> Date de la demande </th>
+                <th> Type de Chambre </th>
+                <th> Date d'arrivée </th>
+                <th> Date de départ </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{onlinerequest.date_request}}</td>
+                <td>{{onlinerequest.date_due}}</td
+                <td>{{onlinerequest.start_date}}</td>
+                <td>{{onlinerequest.end_date}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <p> <button type="button" name="button">(<a href=" {% url 'GestionHotel:onlinerequest-delete' onlinerequest.id %} ">Suprimer</a>)</button>
+          </p>
+
+{% endblock content %}

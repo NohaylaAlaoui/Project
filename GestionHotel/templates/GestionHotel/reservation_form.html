@@ -1,0 +1,16 @@
+{% block title %}
+    <title> Ajouter une nouvelle reservation </title>
+    {% endblock title %}
+    {% block content %}
+    <div class="container">
+      <h1>Information d'une nouvelle reservation </h1>
+    <form class="" action="" method="post">
+      {% csrf_token %}
+        <table>
+          {{ form.as_table }}
+        </table>
+        <input type="submit" name="" value="submit">
+        <input type="submit" onclick="window.location='{% url 'GestionHotel:all-reservations' %}' ; return False;" value="Cancel">
+    </form>
+  </div>
+  {% endblock content %}

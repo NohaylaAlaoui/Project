@@ -1,0 +1,39 @@
+{% load mathfilters %}
+{% block title %}
+    <title>La liste des Reservations</title>
+    {% endblock title %}
+    {% block content %}
+    <div class="container">
+    <h1>La listes des differentes reservations </h1>
+        {% csrf_token %}
+
+          <table border="2" class="table text-center table-hover table-bordered caption-top">
+            <thead class="table-dark">
+              <tr>
+                <th> Numero </th>
+                <th> Date de debut </th>
+                <th> Date de fin </th>
+                <th> Nom Client </th>
+                <th> Type de Chambre </th>
+                <th> Numero de Chambre </th>
+                <th> Prix Totale (DH) </th>
+                <th colspan="2"> actions     </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for reservation in reservation_list %}
+              <tr>
+                <td>{{reservation.id_reservation}}</td>
+                <td>{{reservation.start_date}}</td>
+                <td>{{reservation.end_date}}</td>
+                <td>{{reservation.client_id}}</td>
+                <td>{{reservation.chambre_id.chamber_type}}</td>
+                <td>{{reservation.chambre_id.chamber_number}}</td>
+                <td>{{ reservation.days|mul:reservation.chambre_id.chamber_type.type_price }}</td>
+                <td colspan="2">(<a href=" {% url 'GestionHotel:reservation-detail' reservation.id %} ">Update</a>)   (<a href=" {% url 'GestionHotel:reservation-delete' reservation.id %} ">Delete</a>)</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+{% endblock content %}

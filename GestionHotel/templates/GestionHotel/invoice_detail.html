@@ -1,0 +1,65 @@
+{% load mathfilters %}
+{% block title %}
+    <title>La liste des Factures</title>
+    {% endblock title %}
+    {% block content %}
+    <div class="container">
+    <h1>Les detailles de la Facture </h1>
+        {% csrf_token %}
+        <br>
+        <h2>Les information Client</h2>
+
+        <table border="2" class="table text-center table-hover table-bordered caption-top">
+          <thead class="table-dark">
+            <tr>
+              <th> Nom Client </th>
+              <th> Prenom Client </th>
+              <th> Numero d'identite </th>
+              <th> Numero de Tel</th>
+              <th> Email </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{invoice.reservation_id.client_id.first_name}}</td>
+              <td>{{invoice.reservation_id.client_id.last_name}}</td>
+              <td>{{invoice.reservation_id.client_id.id_number}}</td>
+              <td>{{invoice.reservation_id.client_id.phone_number}}</td>
+              <td>{{invoice.reservation_id.client_id.email_client}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <br>
+        <h2>Detaille Facture</h2>
+
+          <table border="2" class="table text-center table-hover table-bordered caption-top">
+            <thead class="table-dark">
+              <tr>
+                <th> Numero </th>
+                <th> Date d'échéance </th>
+                <th> Nombre de jours </th>
+                <th> Prix de nuitée </th>
+                <th> Totale payer </th>
+                <th> Méthode de payement </th>
+                <th> Remarque </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{invoice.invoice_number}}</td>
+                <td>{{invoice.date_due}}</td>
+                <td>{{invoice.reservation_id.days}}</td>
+                <td>{{invoice.reservation_id.chambre_id.chamber_type.type_price}}</td>
+                <td>{{invoice.reservation_id.days|mul:invoice.reservation_id.chambre_id.chamber_type.type_price}}</td>
+                <td>{{invoice.payment_method}}</td>
+                <td>{{invoice.note}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <p> <button type="button" name="button">(<a href=" {% url 'GestionHotel:invoice-update' invoice.id %} ">Modifier</a>)</button>
+          </p>
+          <p> <button type="button" name="button">(<a href=" {% url 'GestionHotel:invoice-delete' invoice.id %} ">Suprimer</a>)</button>
+          </p>
+
+{% endblock content %}
