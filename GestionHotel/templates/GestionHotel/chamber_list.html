@@ -1,3 +1,4 @@
+{% extends "base_generic.html" %}
 {% block title %}
     <title>La liste des chambre</title>
     {% endblock title %}
@@ -27,10 +28,11 @@
                 <td>{{chamber.chamber_stage}}</td>
                 <td>{{chamber.chamber_phone}}</td>
                 <td>{{chamber.chamber_cleaned}}</td>
-                <td colspan="2">(<a href=" {% url 'GestionHotel:chamber-update' chamber.id %} ">Update</a>)   (<a href=" {% url 'GestionHotel:chamber-delete' chamber.id %} ">Delete</a>)</td>
+                <td colspan="2">(<a href=" {% url 'GestionHotel:chamber-update' chamber.id %} ">Modifier</a>)   (<a href=" {% url 'GestionHotel:chamber-delete' chamber.id %} ">suprimer</a>)</td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
+
 
 {% endblock content %}

@@ -117,3 +117,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # the User costumized model
 AUTH_USER_MODEL = 'GestionHotel.Employee'
+
+# login redirect
+#LOGIN_REDIRECT_URL = 'GestionHotel/index.html'

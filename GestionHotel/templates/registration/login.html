@@ -1,5 +1,7 @@
 <h2> Connexion </h2>
-<form class="" action="index.html" method="post">
+<form class="" action='{% url 'GestionHotel:index' %}' method="post">
   {% csrf_token %}
   {{ form.as_p}}
+  <input class="btn btn-primary" type="submit" name="" value="Connecter">
+  <input type="hidden" name="next" value="{% url 'GestionHotel:index' %}">
 </form>

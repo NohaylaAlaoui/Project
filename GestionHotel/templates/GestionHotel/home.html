@@ -5,6 +5,13 @@
     <title></title>
   </head>
   <body>
-    <h1> Hy lallak NoHAYLA aLAOUI   </h1>
+    {% if user.is_authenticated %}
+    <h1> Hi {{user.username}}   </h1>
+    <p> <a href="{% url 'logout'%}"> Deconnexion</a>
+    </p>
+    {% else %}
+    <p> Vous n'etes pas connecter veuillez vous connecter</p>
+    <a href="{% url 'login' %}"> se connecter</a>
+    {% endif %}
   </body>
 </html>

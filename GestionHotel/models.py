@@ -8,7 +8,7 @@ class Employee(AbstractUser):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     phone_number = PhoneField(blank=True, help_text='numero de telephone')
-    email_client = models.EmailField(blank=True, null=True)
+    email_employee = models.EmailField(blank=True, null=True)
 
 
 
@@ -67,8 +67,8 @@ class Chamber(models.Model):
     chamber_type = models.ForeignKey(ChamberType, on_delete=models.CASCADE)
     chamber_stage = models.IntegerField()
     chamber_phone = PhoneField(blank=True, help_text='numero de telephone de la chambre')
-    chamber_reserved = models.BooleanField()
-    chamber_cleaned = models.BooleanField()
+    chamber_reserved = models.BooleanField(null=True, default=False)
+    chamber_cleaned = models.BooleanField(null=True, default=True)
 
     # Metadata
     class Meta:
@@ -170,6 +170,7 @@ class OnlineRequest(models.Model):
     ChamberType_id = models.ForeignKey(ChamberType, on_delete=models.CASCADE)
     start_date = models.DateField(auto_now=False, auto_now_add=False)
     end_date = models.DateField(auto_now=False, auto_now_add=False)
+    request_confirmed = models.BooleanField(null=True, default=False)
 
     # Methods
     def __str__(self):

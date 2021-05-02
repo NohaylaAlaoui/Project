@@ -3,7 +3,8 @@ from . import views
 
 app_name= 'GestionHotel'
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.home, name='home'),
+    path('index', views.index.as_view(), name='index'),
     path('clients', views.ClientsListView.as_view(), name= 'all-clients'),
     path('ClientCreation', views.ClientCreationView.as_view(), name= 'client-creation'),
     path('<int:pk>/ClientUpdate', views.ClientUpdateView.as_view(), name= 'client-update'),
