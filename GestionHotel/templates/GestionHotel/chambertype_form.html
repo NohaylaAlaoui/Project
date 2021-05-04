@@ -1,16 +1,21 @@
+{% extends "base_generic.html" %}
 {% block title %}
     <title> Ajouter type de chambre </title>
     {% endblock title %}
     {% block content %}
-    <div class="container">
-      <h1>Proprietes d'un nouveau type de chambre </h1>
-    <form class="" action="" method="post">
-      {% csrf_token %}
-        <table>
-          {{ form.as_table }}
-        </table>
-        <input type="submit" name="" value="submit">
-        <input type="submit" onclick="window.location='{% url 'GestionHotel:all-chambertypes' %}' ; return False;" value="Cancel">
-    </form>
-  </div>
+    <div class="container-fluid  ">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-sm-8">
+          <h1>Ajout d'un nouveau type de chambre </h1>
+          <form class="" action="" method="post">
+            {% csrf_token %}
+            <table>
+              {{ form.as_p }}
+            </table>
+            <input class="btn btn-success btn-sm" type="submit" name="" value="Enregistrer">
+            <button class="btn btn-secondary btn-sm" type="button" onclick="window.location='{% url 'GestionHotel:all-chambertypes' %}' ; return False;" >Anuler</button>
+          </form>
+        </div>
+      </div>
+    </div>
   {% endblock content %}

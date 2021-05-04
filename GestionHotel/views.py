@@ -16,7 +16,7 @@ def home(request):
     return render(request,'GestionHotel/home.html')
 
 
-class index(LoginRequiredMixin, View):
+class Index(LoginRequiredMixin, View):
     """View function for index page of site."""
     def get(self, request):
         # Generate counts of some of the main objects
