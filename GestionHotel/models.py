@@ -80,7 +80,7 @@ class Chamber(models.Model):
         return reverse('model-detail-view', args=[str(self.id)])
 
     def __str__(self):
-        return self.chamber_number
+        return '%s %s' % (self.chamber_stage, self.chamber_number)
 
 
 class Reservation(models.Model):
@@ -100,7 +100,7 @@ class Reservation(models.Model):
     # Methods
     def get_absolute_url(self):
         """Returns the url to access a particular instance of MyModelName."""
-        return reverse('model-detail-view', args=[str(self.id_reservation)])
+        return reverse('model-detail-view', args=[str(self.id)])
     @property
     def days(self):
         return (self.end_date - self.start_date).days
