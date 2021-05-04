@@ -20,10 +20,14 @@
               <tr>
                 <td>{{client.first_name}}</td>
                 <td>{{client.last_name}}</td>
-                <td colspan="2">(<a href=" {% url 'GestionHotel:client-update' client.id %} ">Update</a>)   (<a href=" {% url 'GestionHotel:client-delete' client.id %} ">Delete</a>)</td>
+                <td colspan="2">(<a href=" {% url 'GestionHotel:client-update' client.id %} ">Modifier</a>)   (<a href=" {% url 'GestionHotel:client-delete' client.id %} ">Supprimer</a>)</td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
+          <div class="container">
+            <p> <a href="{% url 'GestionHotel:client-creation' %}"> Ajouter un nouveau Client </a></p>
+
+          </div>
 
 {% endblock content %}

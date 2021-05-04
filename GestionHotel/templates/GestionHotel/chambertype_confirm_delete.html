@@ -1,3 +1,4 @@
+{% extends "base_generic.html" %}
 {% block title %}
     <title>Suprimer un type de chambre </title>
     {% endblock title %}
@@ -16,8 +17,8 @@
                 <td>{{ chambertype.type_name }}</td>
                 <td> <form action="" method="POST">
                         {% csrf_token %}
-                         <input type="submit" value="Delete">
-                        <input type="submit" onclick=" window.location= '{% url 'GestionHotel:all-chambertypes' %}' ; return False ;" value="Cancel">
+                         <input type="submit" value="Confirm">
+                        <button type="button" name="button"onclick=" window.location='{% url 'GestionHotel:all-chambertypes' %}' ; return False ;" > Annuler</button> 
                       </form></td>
               </tr>
             </tbody>

@@ -1,3 +1,5 @@
+{% extends "base_generic.html" %}
+{% load mathfilters %}
 {% block title %}
     <title>La liste des Reservations</title>
     {% endblock title %}
@@ -57,9 +59,8 @@
               </tr>
             </tbody>
           </table>
-          <p> <button type="button" name="button">(<a href=" {% url 'GestionHotel:reservation-update' reservation.id %} ">Modifier</a>)</button>
+          <p> <button class="btn btn-success btn-sm" type="button" name="button"><a href=" {% url 'GestionHotel:reservation-update' reservation.id_reservation %} ">Modifier</a></button>
           </p>
-          <p> <button type="button" name="button">(<a href=" {% url 'GestionHotel:reservation-delete' reservation.id %} ">Suprimer</a>)</button>
+          <p> <button class="btn btn-secondary btn-sm" type="button" name="button"><a href=" {% url 'GestionHotel:reservation-delete' reservation.id_reservation %} ">Suprimer</a></button>
           </p>
-
 {% endblock content %}
