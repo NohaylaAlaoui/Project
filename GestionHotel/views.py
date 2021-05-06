@@ -178,7 +178,7 @@ class OnlineRequestDetailView(LoginRequiredMixin, DetailView):
 class OnlineRequestCreationView(CreateView):
     model = OnlineRequest                       #create a modal through a form
     fields = '__all__'
-    success_url = reverse_lazy('GestionHotel:all-onlinerequests')
+    success_url = reverse_lazy('GestionHotel:home')
 
 class OnlineRequestUpdateView(LoginRequiredMixin, UpdateView):
     model = OnlineRequest
