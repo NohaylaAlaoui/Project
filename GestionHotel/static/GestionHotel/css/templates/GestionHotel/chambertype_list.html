@@ -1,0 +1,33 @@
+{% extends "base_generic.html" %}
+{% block title %}
+    <title>La liste des types de chambre</title>
+    {% endblock title %}
+    {% block content %}
+    <div class="container">
+    <h1>La listes des differents types de chambre </h1>
+        {% csrf_token %}
+
+          <table border="2" class="table text-center table-hover table-bordered caption-top">
+            <thead class="table-dark">
+              <tr>
+                <th> Type </th>
+                <th> Prix </th>
+                <th colspan="2"> actions     </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for chambertype in chambertype_list %}
+              <tr>
+                <td>{{chambertype.type_name}}</td>
+                <td>{{chambertype.type_price}}</td>
+                <td colspan="2">(<a href=" {% url 'GestionHotel:chambertype-update' chambertype.id %} ">Update</a>)   (<a href=" {% url 'GestionHotel:chambertype-delete' chambertype.id %} ">Delete</a>)</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="container">
+            <p> <a href="{% url 'GestionHotel:chambertype-creation' %}"> Ajouter une nouvelle type de Chambre </a></p>
+
+          </div>
+
+{% endblock content %}

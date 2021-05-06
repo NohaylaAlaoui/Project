@@ -1,0 +1,36 @@
+{% extends "base_generic.html" %}
+{% block title %}
+    <title>Suprimer un type de chambre </title>
+    {% endblock title %}
+    {% block content %}
+    <div class="container">
+        {% csrf_token %}
+         <table border="2" class="table text-center table-hover table-bordered caption-top">
+         <thead>
+            <tr>
+              <th> Numero </th>
+              <th> Type </th>
+              <th> Prix </th>
+              <th> Etage </th>
+              <th> Numero Telephone </th>
+              <th>Confirmation</th>
+            </tr>
+          </thead>
+            <tbody>
+              <tr>
+                <td>{{chamber.chamber_number}}</td>
+                <td>{{chamber.chamber_type.type_name}}</td>
+                <td>{{chamber.chamber_type.type_price}}</td>
+                <td>{{chamber.chamber_stage}}</td>
+                <td>{{chamber.chamber_phone}}</td>
+                <td> <form action="" method="POST">
+                        {% csrf_token %}
+                         <input type="submit" value="Delete">
+                        <input type="submit" onclick=" window.location= '{% url 'GestionHotel:all-chambers' %}' ; return False ;" value="Cancel">
+                      </form></td>
+              </tr>
+            </tbody>
+    </table>
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+{% endblock content %}

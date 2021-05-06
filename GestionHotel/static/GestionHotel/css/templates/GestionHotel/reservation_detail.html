@@ -1,0 +1,67 @@
+{% extends "base_generic.html" %}
+{% load mathfilters %}
+{% block title %}
+    <title>La liste des Reservations</title>
+    {% endblock title %}
+    {% block content %}
+    <div class="container">
+    <h1>La listes des differentes reservations </h1>
+        {% csrf_token %}
+        <h2>Les information Client</h2>
+
+        <table border="2" class="table text-center table-hover table-bordered caption-top">
+          <thead class="table-dark">
+            <tr>
+              <th> Nom Client </th>
+              <th> Prenom Client </th>
+              <th> Numero d'identite </th>
+              <th> Numero de Tel</th>
+              <th> Email </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{reservation.client_id.first_name}}</td>
+              <td>{{reservation.client_id.last_name}}</td>
+              <td>{{reservation.client_id.id_number}}</td>
+              <td>{{reservation.client_id.phone_number}}</td>
+              <td>{{reservation.client_id.email_client}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>Detaille Reservation</h2>
+
+          <table border="2" class="table text-center table-hover table-bordered caption-top">
+            <thead class="table-dark">
+              <tr>
+                <th> Numero </th>
+                <th> Date de debut </th>
+                <th> Date de fin </th>
+                <th> Type de Chambre </th>
+                <th> Etage de Chambre </th>
+                <th> Numero de Chambre </th>
+                <th> Prix de la nuite </th>
+                <th> Prix Totale (DH) </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{reservation.id_reservation}}</td>
+                <td>{{reservation.start_date}}</td>
+                <td>{{reservation.end_date}}</td>
+                <td>{{reservation.chambre_id.chamber_type}}</td>
+                <td>{{reservation.chambre_id.chamber_stage}}</td>
+                <td>{{reservation.chambre_id.chamber_number}}</td>
+                <td>{{reservation.chambre_id.chamber_type.type_price}}</td>
+                <td>{{reservation.days|mul:reservation.chambre_id.chamber_type.type_price}}</td>
+                <td colspan="2">   </td>
+              </tr>
+            </tbody>
+          </table>
+          <p> <input type="button" name="" value="Modifier">
+            <button class="btn btn-success btn-sm" type="button" name="button"><a href=" {% url 'GestionHotel:reservation-update' reservation.id_reservation %} ">Modifier</a></button>
+          </p>
+          <p> <button class="btn btn-secondary btn-sm" type="button" name="button"><a href=" {% url 'GestionHotel:reservation-delete' reservation.id_reservation %} ">Suprimer</a></button>
+          </p>
+{% endblock content %}

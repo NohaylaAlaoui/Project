@@ -1,0 +1,48 @@
+{% extends "base_generic.html" %}
+{% load mathfilters %}
+{% block title %}
+    <title>La liste des Reservations</title>
+    {% endblock title %}
+    {% block content %}
+    <div class="container-fluid  ">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-sm-10">
+    <h1>La listes des differentes reservations </h1>
+        {% csrf_token %}
+
+          <table border="2" class="table text-center table-hover table-bordered caption-top">
+            <thead class="table-dark">
+              <tr>
+                <th> Numero </th>
+                <th> Date de debut </th>
+                <th> Date de fin </th>
+                <th> Nom Client </th>
+                <th> Type de Chambre </th>
+                <th> Numero de Chambre </th>
+                <th> Prix Totale (DH) </th>
+                <th colspan="2"> actions     </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for reservation in reservation_list %}
+              <tr>
+                <td><a href=" {% url 'GestionHotel:reservation-detail' reservation.id_reservation %} ">{{reservation.id_reservation}}</a> </td>
+                <td>{{reservation.start_date}}</td>
+                <td>{{reservation.end_date}}</td>
+                <td>{{reservation.client_id}}</td>
+                <td>{{reservation.chambre_id.chamber_type}}</td>
+                <td>{{reservation.chambre_id.chamber_number}}</td>
+                <td>{{ reservation.days|mul:reservation.chambre_id.chamber_type.type_price }}</td>
+                <td colspan="2">(<a href=" {% url 'GestionHotel:reservation-update' reservation.id_reservation %} ">Modifier</a>)   (<a href=" {% url 'GestionHotel:reservation-delete' reservation.id_reservation %} ">suprimer</a>)</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="container">
+          <p> <a href="{% url 'GestionHotel:reservation-creation' %}"> Ajouter une nouvelle Réservation </a></p>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}

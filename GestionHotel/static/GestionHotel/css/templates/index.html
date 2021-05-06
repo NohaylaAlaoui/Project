@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Accueil de l'Hotel TOMBOCTO  </h1>
+  <p>Bienvenue à la page d'acceuille, un site web développé par <em>Nohayla</em>!</p>
+  <p>L'Hotel dispose des enregistrements suivantes:</p>
+  <ul>
+    <li><strong> <a href="{% url 'GestionHotel:all-onlinerequests' %}"> Demandes:</a></strong> {{ num_demandes }}</li>
+    <li><strong><a href="{% url 'GestionHotel:all-reservations' %}"> Reservations:</a></strong> {{ num_reservations }}</li>
+    <li><strong><a href="{% url 'GestionHotel:all-chambers' %}"> Chambres disponibles:</a></strong> {{ num_chambers_available }}</li>
+  </ul>
+{% endblock %}
