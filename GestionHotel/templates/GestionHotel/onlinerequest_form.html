@@ -1,21 +1,80 @@
+{% load static %}
 {% block title %}
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="formulaire de de damnde de reservation">
+    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text:300,400,700|Rubik:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href=" https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="{% static 'css/styles-merged.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
       <title> Demande de réservation </title>
     </head>
     {% endblock title %}
     {% block content %}
-    <div class="container">
-      <h1>Faire une Demande de réservation </h1>
-    <form class="" action="" method="post">
-      {% csrf_token %}
-        <table>
-          {{ form.as_table }}
-        </table>
-        <input type="submit" name="" value="envoyer">
-        <input type="submit" onclick="window.location='{% url 'GestionHotel:index' %}' ; return False;" value="Cancel">
+      <div class="row">
+        <div class="col-md-2">
+          <a href="{% url 'GestionHotel:home' %}" class="probootstrap-logo visible-xs">
+            <img src="{% static 'GestionHotel/media/logo_sm.png' %}" class="hires" width="120" height="33" alt="Logo"></a>
+          <nav role="navigation" class="navbar navbar-default">
+            <ul class="probootstrap-main-nav">
+              <li><a href="{% url 'GestionHotel:home' %}">Home</a></li>
+              <li class="active"><a href="contact.html">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-md-8">
+          <h1 class="mt0">Faire une Demande de réservation </h1>
+          <form class="probootstrap-form" action="" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="fname">Nom</label>
+                    {{ form.last_name }}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="fname">Prenom</label>
+                    {{ form.first_name }}
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                {{ form.email_client }}
+              </div>
+              <div class="form-group">
+                <label for="subject">Telephone</label>
+                {{ form.phone_number }}
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="fname">Date arrivée</label>
+                      {{ form.start_date }}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="fname">Date départ</label>
+                      {{ form.end_date }}
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="subject">Type de Chambre</label>
+                  {{ form.ChamberType_id }}
+                </div>
+        <input type="submit" onclick="window.location='{% url 'GestionHotel:home' %}' ; return False;" name="" value="envoyer">
     </form>
   </div>
+  <script src="{% static 'GestionHotel/js/scripts.min.js' %}"></script>
+  <script src="{% static 'GestionHotel/js/main.min.js' %}"></script>
+  <script src="{% static 'GestionHotel/js/custom.js' %}"></script>
+
   {% endblock content %}

@@ -59,7 +59,8 @@
               </tr>
             </tbody>
           </table>
-          <p> <button class="btn btn-success btn-sm" type="button" name="button"><a href=" {% url 'GestionHotel:reservation-update' reservation.id_reservation %} ">Modifier</a></button>
+          <p> <input type="button" name="" value="Modifier">
+            <button class="btn btn-success btn-sm" type="button" name="button"><a href=" {% url 'GestionHotel:reservation-update' reservation.id_reservation %} ">Modifier</a></button>
           </p>
           <p> <button class="btn btn-secondary btn-sm" type="button" name="button"><a href=" {% url 'GestionHotel:reservation-delete' reservation.id_reservation %} ">Suprimer</a></button>
           </p>

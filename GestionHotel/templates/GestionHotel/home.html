@@ -1,17 +1,63 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang='fr' dir="ltr">
+{% block title %}
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="formulaire de de damnde de reservation">
+    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text:300,400,700|Rubik:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href=" https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="{% static 'GestionHotel/css/styles-merged.css' %}">
+    <link rel="stylesheet" href="{% static 'GestionHotel/css/style.min.css' %}">
+    <link rel="stylesheet" href="{% static 'GestionHotel/css/custom.css' %}">
+    <link href="{% static 'GestionHotel/css/layout.css' %}" rel="stylesheet" type="text/css" />
+    <script src="{% static 'GestionHotel/js/maxheight.js' %}" type="text/javascript"></script>
+    <link rel="stylesheet" href="{% static 'GestionHotel/css/styles.css' %}" type="text/css">
+    <title>Acceuille Hotel Tombokto</title>
   </head>
-  <body>
-    {% if user.is_authenticated %}
-    <h1> Hi {{user.username}}   </h1>
-    <p> <a href="{% url 'logout'%}"> Deconnexion</a>
-    </p>
-    {% else %}
-    <p> Vous n'etes pas connecter veuillez vous connecter</p>
-    <a href="{% url 'login' %}"> se connecter</a>
-    {% endif %}
+  {% endblock title %}
+  {% block content %}
+  <body id="page1" onload="new ElementMaxHeight();">
+  <div id="main">
+    <!-- header -->
+    <div id="header">
+      <div class="row-1">
+        <div class="wrapper">
+          <div class="logo">
+            <h1><a href="#">Tombokto</a></h1>
+            <em>Hotel</em> <strong>True Luxury</strong> </div>
+          <div class="phones"> 212-(0)5-123-45-67<br />
+            212-(0)-123-45-67 </div>
+        </div>
+      </div>
+      <div class="row-2">
+        <div class="indent">
+          <!-- header-box begin -->
+          <div class="header-box">
+            <div class="inner">
+              <ul class="nav">
+                <li><a href="{% url 'GestionHotel:home' %}" class="current">Home</a></li>
+                <li><a href="{% url 'GestionHotel:onlinerequest-creation' %}">Réservation</a></li>
+                {% if user.is_authenticated %}
+                <li><strong> Hi {{user.username}}</strong></li>
+                <li><a href="{% url 'GestionHotel:index' %}">Acceuille</a></li>
+                <li> <a href="{% url 'logout'%}"> Deconnexion</a></li>
+                  {% else %}
+                <li><a href="{% url 'login' %}"> se connecter</a></li>
+                  {% endif %}
+              </ul>
+            </div>
+          </div>
+          <!-- header-box end -->
+        </div>
+      </div>
+    </div>
+  </div>
+
   </body>
+
+  {% endblock %}
 </html>
